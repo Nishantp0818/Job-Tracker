@@ -11,6 +11,7 @@ app.set('trust proxy', 1);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://job-tracker-git-main-nishant-9028.vercel.app',
   process.env.CLIENT_URL
 ].filter(Boolean);
 
@@ -19,7 +20,7 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(null, origin);
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true
@@ -32,6 +33,3 @@ app.use("/api/auth", authRouter);
 app.use("/api/jobs", jobRouter);
 
 module.exports = app;
-
-
-
