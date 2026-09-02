@@ -35,7 +35,8 @@ async function registerUser(req,res){
 
     res.status(201).json({
         message: "User register successfully",
-        user
+        user,
+        token
     });
 }catch(error) {
    return res.status(500).json({
@@ -78,7 +79,8 @@ user.password = undefined;
 
 res.status(200).json({
     message: "Login successfully",
-    user
+    user,
+    token
 });
     }catch(error) {
    return res.status(500).json({

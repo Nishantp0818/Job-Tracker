@@ -3,12 +3,16 @@ const userModel =require("../models/user.model");
 
 const authmiddleware =async(req, res ,next)=>{
 
-    const token =req.cookies.token;
+    let token = req.cookies.token;
 
-    if(!token){
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    if (!token) {
         return res.status(401).json({
             message: "unauthorized"
-        })
+        });
     }
     let decoded;
     try{
