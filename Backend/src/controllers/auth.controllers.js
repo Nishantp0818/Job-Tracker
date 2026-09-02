@@ -25,10 +25,12 @@ async function registerUser(req,res){
         id:user._id
     }, process.env.JWT_SECRET)
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+     res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000
+});
     user.password = undefined;
 
     res.status(201).json({
@@ -66,10 +68,12 @@ const token =jwt.sign({
     id: user._id},
     process.env.JWT_SECRET,
 )
-res.cookie("token", token,{ 
+res.cookie("token", token, { 
     httpOnly: true,
-    maxAge: 7*24*60*60*1000
-})
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000
+});
 user.password = undefined;
 
 res.status(200).json({
@@ -88,7 +92,11 @@ res.status(200).json({
 // API for LOGOUT
 async function logoutUser(req, res) {
     try {
-        res.clearCookie("token");
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
+        });
         return res.status(200).json({
             message: "Logged out successfully"
         });
@@ -114,4 +122,4 @@ async function getMe(req, res) {
 }
 
 module.exports = { registerUser, loginUser, logoutUser, getMe };
-
+

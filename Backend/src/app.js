@@ -6,11 +6,24 @@ const jobRouter = require('./routes/job.routes');
 
 const app = express();
 
+app.set('trust proxy', 1);
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  process.env.CLIENT_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, origin);
+    }
+  },
   credentials: true
 }));
-
 
 app.use(express.json());
 app.use(cookieparser());
