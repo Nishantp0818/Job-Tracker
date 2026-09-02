@@ -8,6 +8,9 @@ The project is deployed with React on Vercel, Node.js/Express on Render, and Mon
 
 [View Live Project] https://job-tracker-git-main-nishant-9028.vercel.app
 
+<img width="2382" height="1388" alt="image" src="https://github.com/user-attachments/assets/d7f7f91e-ebd6-49e7-a298-9dcefc20e54a" />
+
+
 ## ✨ Features
 
 - User Registration
