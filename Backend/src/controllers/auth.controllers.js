@@ -39,6 +39,7 @@ async function registerUser(req,res){
         token
     });
 }catch(error) {
+   console.error("Register error:", error);
    return res.status(500).json({
       message: "Internal Server Error"
    });
@@ -83,6 +84,7 @@ res.status(200).json({
     token
 });
     }catch(error) {
+   console.error("Login error:", error);
    return res.status(500).json({
       message: "Internal Server Error"
    });

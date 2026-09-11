@@ -11,6 +11,7 @@ app.set('trust proxy', 1);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://job-tracker-rose-theta.vercel.app',
   process.env.CLIENT_URL
 ].filter(Boolean);
 
@@ -22,12 +23,12 @@ app.use(cors({
 
     const isAllowed = 
       cleanOrigin.endsWith('.vercel.app') ||
-      allowedOrigins.some(o => o.replace(/\/$/, '') === cleanOrigin);
+      allowedOrigins.some(o => o && o.replace(/\/$/, '') === cleanOrigin);
 
     if (isAllowed) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null, false);
     }
   },
   credentials: true
