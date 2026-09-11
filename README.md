@@ -6,7 +6,7 @@ The project is deployed with React on Vercel, Node.js/Express on Render, and Mon
                                               
 ## 🚀 Live Demo
 
-[View Live Project]  job-tracker-rose-theta.vercel.app
+[View Live Project]  https://job-tracker-rose-theta.vercel.app
 
 <img width="2382" height="1388" alt="image" src="https://github.com/user-attachments/assets/d7f7f91e-ebd6-49e7-a298-9dcefc20e54a" />
 
